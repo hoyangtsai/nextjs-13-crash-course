@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { FaStar, FaCodeBranch, FaEye } from 'react-icons/fa';
-import getConfig from 'next/config';
 
-const { githubToken } = getConfig();
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 
 async function fetchRepos(username: string) {
@@ -34,8 +32,8 @@ type Repo = {
 }
 
 const ReposPage = async () => {
-  console.log('githubToken :>> ', githubToken);
   console.log('GITHUB_TOKEN :>> ', GITHUB_TOKEN);
+  console.log('githubToken :>> ', process.env.githubToken);
   console.log('process.env :>> ', process.env);
 
   const repos = await fetchRepos('hoyangtsai');
