@@ -8,7 +8,7 @@ async function fetchRepo(name: string) {
     `https://api.github.com/repos/hoyangtsai/${name}`,
     {
       headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : '',
       },
       next: {
         revalidate: 60,

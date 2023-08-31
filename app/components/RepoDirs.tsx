@@ -9,7 +9,7 @@ async function fetchRepoContents(name: string) {
     `https://api.github.com/repos/hoyangtsai/${name}/contents`,
     {
       headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : '',
       },
       next: {
         revalidate: 60,

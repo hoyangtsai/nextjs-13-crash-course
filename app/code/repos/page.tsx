@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { FaStar, FaCodeBranch, FaEye } from 'react-icons/fa';
 
-const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || '';
 
 async function fetchRepos(username: string) {
   const response = await fetch(
     `https://api.github.com/users/${username}/repos`,
     {
       headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : '',
       },
       next: {
           revalidate: 60,
@@ -42,7 +42,7 @@ const ReposPage = async () => {
     <div className='repos-container'>
       <h2>Repositories</h2>
       <ul className='repo-list'>
-        {repos.map((repo: Repo) => (
+        {Array.isArray(repos) && repos.map((repo: Repo) => (
           <li key={repo.id}>
             <Link href={{pathname: `/code/repos/${repo.name}`, query: repo}}>
               <h3>{repo.name}</h3>
