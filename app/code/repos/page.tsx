@@ -33,7 +33,6 @@ type Repo = {
 
 const ReposPage = async () => {
   console.log('GITHUB_TOKEN :>> ', GITHUB_TOKEN);
-  console.log('githubToken :>> ', process.env.githubToken);
   console.log('process.env :>> ', process.env);
 
   const repos = await fetchRepos('hoyangtsai');
