@@ -24,6 +24,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  NEXT_PUBLIC_GITHUB_TOKEN: ${{ vars.NEXT_PUBLIC_GITHUB_TOKEN }}
+
 jobs:
   # Build job
   build:
