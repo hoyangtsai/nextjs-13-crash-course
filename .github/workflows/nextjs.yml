@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  NEXT_PUBLIC_GITHUB_TOKEN: ${{ vars.NEXT_PUBLIC_GITHUB_TOKEN }}
+  NEXT_PUBLIC_GITHUB_TOKEN: ${{ secrets.NEXT_PUBLIC_GITHUB_TOKEN }}
 
 jobs:
   # Build job
@@ -77,6 +77,9 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
+        run:
+          echo vars NEXT_PUBLIC_GITHUB_TOKEN ${{vars.NEXT_PUBLIC_GITHUB_TOKEN}}
+          echo secrets NEXT_PUBLIC_GITHUB_TOKEN ${{secrets.NEXT_PUBLIC_GITHUB_TOKEN}}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
