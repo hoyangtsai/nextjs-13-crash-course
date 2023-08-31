@@ -25,6 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  NEXT_PUBLIC_GITHUB_TOKEN: ${{ secrets.NEXT_PUBLIC_GITHUB_TOKEN }}
   API_TOKEN: ${{ secrets.API_TOKEN }}
 
 jobs:
